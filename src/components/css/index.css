@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Sulphur+Point:wght@300;400;700&display=swap');
+* {
+    font-family: 'Sulphur Point', sans-serif;
+    font-weight: 400;
+    line-height: 0.4;
+    -webkit-appearance: none;
+    background-color: #fcfcf5;
+        }
+
+.layoutWrapper {
+    display: grid;
+    grid-template-rows: 15vh 1fr;
+    grid-template-columns: 6vh 1fr;
+}
+
+.header {
+    margin-top: 1vh;
+    margin-right: 1vh;
+    border-top: 1vh solid #ff6600;
+    border-bottom: 1vh solid #00008b;
+
+    padding-top: 1vh;
+    padding-left: 1vh;
+    width: 90vw;
+}
+
+.corner {
+    margin-top: 1vh;
+    margin-left: 1vh;
+    border-top: 1vh solid #ff6600;
+    border-left: 1vh solid #ff6600;
+    border-radius: 5vh 0 0 0;
+}
+
+.sidebar {
+    margin-left: 1vh;
+    height: 90vh;
+    border-left: 1vh solid #ff6600;
+    border-right: 1vh solid #00008b;
+}
+
+.portfolio {
+    margin-top: 1vh;
+    margin-left: 1vh;
+}
