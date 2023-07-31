@@ -7,9 +7,9 @@ const Layout = ({ children }) => {
         <>
 
             <div className="layoutWrapper">
-                <Corner />
+                {/*<Corner />*/}
                 <Header />
-                <Sidebar />
+                {/*<Sidebar />*/}
                 <Portfolio />
             </div>
         </>
