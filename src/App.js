@@ -1,15 +1,18 @@
 import './App.css';
 import "./components/css/index.css"
-import Layout from "./components/Layout";
 import Header from "./components/Header";
-import Portfolio from "./components/Portfolio";
+import Home from "./components/Home";
+import {useState} from "react";
+
 
 const App = () => {
+    const [activePage, setActivePage] = useState("home")
+
     return (
         <>
-            {/*<Layout />*/}
-            <Header />
-            <Portfolio />
+            <Header setActivePage={setActivePage}
+                    activePage={activePage}/>
+            <Home />
         </>
     )
 }
