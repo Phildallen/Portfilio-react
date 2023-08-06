@@ -20,7 +20,7 @@ const App = () => {
         <>
             <Header setActivePage={setActivePage}
                     activePage={activePage}/>
-            <Home />
+            <Home setActivePage={setActivePage}/>
         </>
     )
 }
