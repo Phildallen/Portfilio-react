@@ -15,12 +15,23 @@ library.add(fab, faEnvelope, faLinkedin, faGithub)
 
 const App = () => {
     const [activePage, setActivePage] = useState("home")
+    const [elementPositions, setElementPositions] = useState({"home": 240,"about": 500,"contact":1300})
+
+    // const setActivePageOnHomePage = () => {
+    //     if (window.scrollY <= elementPositions.home-40) {
+    //         setActivePage("home")
+    //     } if (window.scrollY > elementPositions.home-40 && window.scrollY <= elementPositions.contact){
+    //         setActivePage("about")
+    //     }
+    // }
 
     return (
         <>
             <Header setActivePage={setActivePage}
                     activePage={activePage}/>
-            <Home setActivePage={setActivePage}/>
+            <Home   setActivePage={setActivePage}
+                setElementPositions={setElementPositions}
+                    elementPositions={elementPositions}/>
         </>
     )
 }

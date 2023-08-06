@@ -2,32 +2,34 @@ import {useState} from "react";
 
 const Header = ({activePage, setActivePage}) => {
 
-    const [color,setColor] = useState("top")
-    const changeColour = () => {
+    const [transparency,setTransparency] = useState("top")
+    
+    const changeTransparency = () => {
         if (window.scrollY >= 160) {
-            setColor("bottom")
+            setTransparency("bottom")
         } else {
-            setColor("top")
+            setTransparency("top")
         }
     }
 
-    window.addEventListener('scroll', changeColour)
+    window.addEventListener('scroll', changeTransparency)
 
     return (
         <>
-            <div className={color === "top" ? "header" : "header clearHeader"}>
+            <div className={transparency === "top" ? "header" : "header clearHeader"}>
 
                 <div className="buttonContainer">
-                    <p>{window.scrollY}</p>
-                    <p>{color}</p>
+                    {/*<p>{window.scrollY}</p>*/}
+                    {/*<p>{transparency}</p>*/}
+                    {/*<p>{activePage}</p>*/}
                     {activePage === "home" ? null :
-                    <a href='#home'  onClick={() => setActivePage("home")}><button className="navButton">home</button></a>}
+                    <a href='#home'  onClick={() => setActivePage("home")}><button className={transparency === "top" ? "navButton" : "navButton invertedColour"}>home</button></a>}
                     {activePage === "about" ? null :
-                        <a href='#about'  onClick={() => setActivePage("about")}><button className="navButton">about</button></a>}
+                        <a href='#about'  onClick={() => setActivePage("about")}><button className={transparency === "top" ? "navButton" : "navButton invertedColour"}>about</button></a>}
                     {activePage === "projects" ? null :
-                        <button className="navButton" onClick={() => setActivePage("projects")}>projects</button>}
+                        <button className={transparency === "top" ? "navButton" : "navButton invertedColour"} onClick={() => setActivePage("projects")}>projects</button>}
                     {activePage === "contact" ? null :
-                    <a href='#contact'  onClick={() => setActivePage("contact")}><button className="navButton">contact</button></a>}
+                    <a href='#contact'  onClick={() => setActivePage("contact")}><button className={transparency === "top" ? "navButton" : "navButton invertedColour"}>contact</button></a>}
                 </div>
             </div>
         </>

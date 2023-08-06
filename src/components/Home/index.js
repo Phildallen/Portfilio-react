@@ -1,13 +1,17 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useRef} from "react";
 
-const Home = ({setActivePage}) => {
+const Home = ({setActivePage, elementPositions, setElementPositions}) => {
 
+    const homeRef = useRef()
     const aboutRef = useRef()
-    const [y, setY] = useState()
+    const contactRef = useRef()
     const getPosition = () => {
-        const y = aboutRef.current.offsetTop
-        setY(y)
+        const updateY = {...elementPositions}
+        updateY.home = homeRef.current.offsetTop
+        updateY.about = aboutRef.current.offsetTop
+        updateY.contact = contactRef.current.offsetTop
+        setElementPositions(updateY)
     }
 
     useEffect(() => {
@@ -18,13 +22,24 @@ const Home = ({setActivePage}) => {
         window.addEventListener("resize", getPosition)
     }, [])
 
+    const setActivePageOnHomePage = () => {
+        if (window.scrollY < elementPositions.home) {
+            setActivePage("home")
+        } if (window.scrollY >= (window.document.body.offsetHeight-window.innerHeight)-100) {
+            setActivePage("contact")
+        } if (window.scrollY >= elementPositions.home && window.scrollY < (window.document.body.offsetHeight-window.innerHeight)-100){
+            setActivePage("about")
+        }
+    }
+
+    window.addEventListener('scroll', setActivePageOnHomePage)
 
 
     return (
         <>
-            <div className="homePage" id="home">
+            <div className="homePage" id="home" >
                 <div className="homePageFlex">
-                    <div className="bigLogo">
+                    <div className="bigLogo" ref={homeRef}>
                         <h1>Phil Allen</h1>
                         <div className="bigInnerLogo">
                             <h2>full stack developer</h2>
@@ -45,7 +60,6 @@ const Home = ({setActivePage}) => {
                             In my spare time I enjoy PC & retro gaming, working on my 'hobby' car as well as embracing
                             my
                             passion for House music.</p>
-                        <p>{y}</p>
                     </div>
                     <div className="bootCamp">
                         <p>During the 16-week course, we worked in an Agile environment, implementing Scrum for the
@@ -65,7 +79,7 @@ const Home = ({setActivePage}) => {
                             <li>MongoDB</li>
                         </ul>
                     </div>
-                    <div className="contact" id="contact">
+                    <div className="contact" id="contact" ref={contactRef}>
                         <h1>Contact</h1>
                         <div className="contactButtons">
                             <a href="mailto:phil_d_allen@protonmail.com" className="contactButton">
