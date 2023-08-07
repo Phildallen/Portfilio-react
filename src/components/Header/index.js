@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-const Header = ({activePage, setActivePage}) => {
+const Header = ({activePage, setActivePage, elementPositions}) => {
 
     const [transparency,setTransparency] = useState("top")
     

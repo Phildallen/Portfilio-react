@@ -4,12 +4,32 @@ import jobSearch from "../../images/jobSearch.png"
 import musicApp from "../../images/musicApp.png"
 import stockManagementAPI from "../../images/stockManagementAPI.png"
 import billSplitter from "../../images/billSplitter.png"
+import {useEffect, useRef} from "react";
 
-const Projects = () => {
+const Projects = (elementPositions, setElementPositions) => {
+
+    const projectsRef = useRef()
+
+    const getPosition = () => {
+        const updateY = {...elementPositions}
+        updateY.projects = projectsRef.current.offsetTop
+        setElementPositions(updateY)
+    }
+
+
+    useEffect(() => {
+        getPosition()
+        window.addEventListener("resize", getPosition)
+
+
+        return () => {
+            window.removeEventListener("resize", getPosition)
+        }
+    }, [])
+
     return (
-        <div className="homePage">
-            <h1>Projects</h1>
-            <div className="container">
+        <div className="homePage projectPageGrid">
+            <h1 className="projectsHeading" ref={projectsRef}>Projects</h1>
                 <div className="projects">
                     <div className="projectCard">
                         <h2>Collection App</h2>
@@ -29,6 +49,7 @@ const Projects = () => {
                                     version
                                 </a>
                             </div>
+                        </div>
                         </div>
                         <div className="projectCard">
                             <h2>Wordle Clone</h2>
@@ -116,8 +137,6 @@ const Projects = () => {
                                 </a>
                             </div>
                         </div>
-                    </div>
-                </div>
             </div>
         </div>
     )

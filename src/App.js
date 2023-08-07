@@ -15,7 +15,7 @@ library.add(fab, faEnvelope, faLinkedin, faGithub)
 
 const App = () => {
     const [activePage, setActivePage] = useState("home")
-    const [elementPositions, setElementPositions] = useState({"home": 240, "about": 500, "contact": 1300})
+    const [elementPositions, setElementPositions] = useState({"home": 240, "about": 500, "contact": 1300, "projects": 200})
 
     const setActivePageOnHomePage = () => {
         if (activePage !== "projects") {
@@ -39,10 +39,13 @@ const App = () => {
     return (
         <>
             <Header setActivePage={setActivePage}
-                    activePage={activePage}/>
-            {activePage === "projects" ? <Projects/> : <Home setActivePage={setActivePage}
-                                                             setElementPositions={setElementPositions}
-                                                             elementPositions={elementPositions}/>}
+                    activePage={activePage}
+                    setElementPositions={setElementPositions}
+                    elementPositions={elementPositions}/>
+            {activePage === "projects" ? <Projects setElementPositions={setElementPositions}
+                                                   elementPositions={elementPositions}/> :
+                <Home setElementPositions={setElementPositions}
+                      elementPositions={elementPositions}/>}
         </>
     )
 }

@@ -1,10 +1,9 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {useEffect, useRef} from "react"
 
-const Home = ({setActivePage, elementPositions, setElementPositions}) => {
+const Home = ({elementPositions, setElementPositions}) => {
 
     const homeRef = useRef(null)
-    // const aboutRef = useRef(null)
     const aboutAndIORef = useRef(null)
     const contactRef = useRef(null)
     const getPosition = () => {
@@ -15,19 +14,21 @@ const Home = ({setActivePage, elementPositions, setElementPositions}) => {
         setElementPositions(updateY)
     }
 
-    console.log(elementPositions)
 
     useEffect(() => {
         getPosition()
+        window.addEventListener("resize", getPosition)
+
+
+        return () => {
+            window.removeEventListener("resize", getPosition)
+        }
     }, [])
 
-    useEffect(() => {
-        window.addEventListener("resize", getPosition)
-    }, [])
 
     return (
         <>
-            <div className="homePage" id="home" >
+            <div className="homePage homePageGrid" id="home" >
                 <div className="homePageFlex">
                     <div className="bigLogo" ref={homeRef}>
                         <h1>Phil Allen</h1>
