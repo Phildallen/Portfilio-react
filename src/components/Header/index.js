@@ -21,7 +21,7 @@ const Header = ({activePage, setActivePage}) => {
                 <div className="buttonContainer">
                     {/*<p>{window.scrollY}</p>*/}
                     {/*<p>{transparency}</p>*/}
-                    {/*<p>{activePage}</p>*/}
+                    <p>{activePage}</p>
                     {activePage === "home" ? null :
                     <a href='#home'  onClick={() => setActivePage("home")}><button className={transparency === "top" ? "navButton" : "navButton invertedColour"}>home</button></a>}
                     {activePage === "about" ? null :

@@ -1,18 +1,21 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {useEffect, useRef} from "react";
+import {useEffect, useRef} from "react"
 
 const Home = ({setActivePage, elementPositions, setElementPositions}) => {
 
-    const homeRef = useRef()
-    const aboutRef = useRef()
-    const contactRef = useRef()
+    const homeRef = useRef(null)
+    // const aboutRef = useRef(null)
+    const aboutAndIORef = useRef(null)
+    const contactRef = useRef(null)
     const getPosition = () => {
         const updateY = {...elementPositions}
         updateY.home = homeRef.current.offsetTop
-        updateY.about = aboutRef.current.offsetTop
+        updateY.about = aboutAndIORef.current.offsetTop
         updateY.contact = contactRef.current.offsetTop
         setElementPositions(updateY)
     }
+
+    console.log(elementPositions)
 
     useEffect(() => {
         getPosition()
@@ -21,19 +24,6 @@ const Home = ({setActivePage, elementPositions, setElementPositions}) => {
     useEffect(() => {
         window.addEventListener("resize", getPosition)
     }, [])
-
-    const setActivePageOnHomePage = () => {
-        if (window.scrollY < elementPositions.home) {
-            setActivePage("home")
-        } if (window.scrollY >= (window.document.body.offsetHeight-window.innerHeight)-100) {
-            setActivePage("contact")
-        } if (window.scrollY >= elementPositions.home && window.scrollY < (window.document.body.offsetHeight-window.innerHeight)-100){
-            setActivePage("about")
-        }
-    }
-
-    window.addEventListener('scroll', setActivePageOnHomePage)
-
 
     return (
         <>
@@ -45,7 +35,7 @@ const Home = ({setActivePage, elementPositions, setElementPositions}) => {
                             <h2>full stack developer</h2>
                         </div>
                     </div>
-                    <div className="about" id="about" ref={aboutRef}>
+                    <div className="about" id="about" ref={aboutAndIORef}>
                         <p>I am Phil, an aspiring software developer making a transition from a career in accounts. This
                             is
                             driven by a lifelong passion for technology.
