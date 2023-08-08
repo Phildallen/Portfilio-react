@@ -104,9 +104,10 @@ color: #ffffff;
 
 .bigInnerLogo h2 {
     flex: 1;
-    font-size: 3vh;
+    font-size: 2rem;
     line-height: 0;
-    padding-left: 2vw
+    padding-left: 2vw;
+    text-align: left;
 }
 
 .about, .bootCamp {
@@ -198,11 +199,11 @@ img {
 
 @media (max-width: 900px) and (min-width: 701px) {
     .bigLogo {
-        margin-right: 45vw;
+        margin-right: 41vw;
     }
 }
 
-@media (max-width: 700px) and (min-width: 601px) {
+@media (max-width: 700px) and (min-width: 681px) {
 
     .homePageGrid {
         grid-template-rows: 8rem 1fr 7rem;
@@ -211,11 +212,11 @@ img {
         grid-template-rows: 6rem 6rem 1fr 7rem;
     }
     .bigLogo {
-        margin-right: 40vw;
+        margin-right: 38vw;
     }
 }
 
-@media (max-width: 600px) and (min-width: 1px) {
+@media (max-width: 680px) and (min-width: 1px) {
 
     .homePageGrid {
         grid-template-rows: 5rem 1fr 5rem;

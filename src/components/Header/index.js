@@ -1,35 +1,38 @@
 import {useState} from "react";
 
-const Header = ({activePage, setActivePage, elementPositions}) => {
+const Header = ({activePage, setActivePage, homePageVisible,elementPositions}) => {
 
-    const [transparency,setTransparency] = useState("top")
+    const [transparency,setTransparency] = useState(0)
     
     const changeTransparency = () => {
-        if (window.scrollY >= 160) {
-            setTransparency("bottom")
-        } else {
-            setTransparency("top")
+        if (activePage === "home") {
+            window.scrollY > elementPositions.home - 100 ? setTransparency(1) : setTransparency(0)
         }
-    }
+        if (activePage === "projects") {
+            window.scrollY > elementPositions.projects - 120 ? setTransparency(1) : setTransparency(0)
+        }
+            }
 
     window.addEventListener('scroll', changeTransparency)
 
+
     return (
         <>
-            <div className={transparency === "top" ? "header" : "header clearHeader"}>
+            <div className={transparency === 0 ? "header" : "header clearHeader"}>
 
                 <div className="buttonContainer">
                     {/*<p>{window.scrollY}</p>*/}
-                    {/*<p>{transparency}</p>*/}
-                    <p>{activePage}</p>
-                    {activePage === "home" ? null :
-                    <a href='#home'  onClick={() => setActivePage("home")}><button className={transparency === "top" ? "navButton" : "navButton invertedColour"}>home</button></a>}
-                    {activePage === "about" ? null :
-                        <a href='#about'  onClick={() => setActivePage("about")}><button className={transparency === "top" ? "navButton" : "navButton invertedColour"}>about</button></a>}
+                    {/*<p>{activePage}</p>*/}
+                    {/*<p>{homePageVisible.home}{homePageVisible.about}{homePageVisible.contact}</p>*/}
+                    {homePageVisible.home === 1 ? null :
+                    <a href='#home'  onClick={() => setActivePage("home")}><button className={transparency === 0 ? "navButton" : "navButton invertedColour"}>home</button></a>}
+                    {homePageVisible.about === 1 ? null :
+                        <a href='#about'  onClick={() => setActivePage("home")}><button className={transparency === 0 ? "navButton" : "navButton invertedColour"}>about</button></a>}
+                    {homePageVisible.contact === 1 ? null :
+                    <a href='#contact'  onClick={() => setActivePage("home")}><button className={transparency === 0 ? "navButton" : "navButton invertedColour"}>contact</button></a>}
                     {activePage === "projects" ? null :
-                        <button className={transparency === "top" ? "navButton" : "navButton invertedColour"} onClick={() => setActivePage("projects")}>projects</button>}
-                    {activePage === "contact" ? null :
-                    <a href='#contact'  onClick={() => setActivePage("contact")}><button className={transparency === "top" ? "navButton" : "navButton invertedColour"}>contact</button></a>}
+                        <button className={transparency === 0 ? "navButton" : "navButton invertedColour"} onClick={() => setActivePage("projects")}>projects</button>}
+
                 </div>
             </div>
         </>

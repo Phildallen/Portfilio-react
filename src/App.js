@@ -6,7 +6,7 @@ import './App.css';
 import "./components/css/index.css"
 import Header from "./components/Header";
 import Home from "./components/Home";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Projects from "./components/Projects";
 
@@ -15,33 +15,44 @@ library.add(fab, faEnvelope, faLinkedin, faGithub)
 
 const App = () => {
     const [activePage, setActivePage] = useState("home")
-    const [elementPositions, setElementPositions] = useState({"home": 240, "about": 500, "contact": 1300, "projects": 200})
+    const [homePageVisible, setHomePageVisible] = useState({"home": 1, "about": 1, "contact": 0})
+    const [elementPositions, setElementPositions] = useState({
+        "home": 240,
+        "about": 500,
+        "contact": 1300,
+        "projects": 200
+    })
 
     const setActivePageOnHomePage = () => {
-        if (activePage !== "projects") {
-            if (window.scrollY < elementPositions.home) {
-                setActivePage("home")
-            }
-            if (window.scrollY >= (window.document.body.offsetHeight - window.innerHeight) - 100) {
-                setActivePage("contact")
-            }
-            if (window.scrollY >= elementPositions.home && window.scrollY < (window.document.body.offsetHeight - window.innerHeight) - 100) {
-                setActivePage("about")
-            }
-        } else {
-            setActivePage("projects")
+        const updateHomePageVisible = {...homePageVisible}
+        if (activePage === "projects") {
+            updateHomePageVisible.home = 0
+            updateHomePageVisible.about = 0
+            updateHomePageVisible.contact = 0
         }
+        if (activePage === "home") {
+            let bottomY = window.scrollY + window.innerHeight
+            window.scrollY < elementPositions.home ? updateHomePageVisible.home = 1 : updateHomePageVisible.home = 0
+            window.scrollY < elementPositions.about && bottomY > elementPositions.about ? updateHomePageVisible.about = 1 : updateHomePageVisible.about = 0
+            window.scrollY < elementPositions.contact && bottomY > elementPositions.contact ? updateHomePageVisible.contact = 1 : updateHomePageVisible.contact = 0
+        }
+        setHomePageVisible(updateHomePageVisible)
     }
 
     window.addEventListener('scroll', setActivePageOnHomePage)
 
+    useEffect( () => {
+        setActivePageOnHomePage()
+    }, [activePage])
 
     return (
         <>
             <Header setActivePage={setActivePage}
                     activePage={activePage}
-                    setElementPositions={setElementPositions}
-                    elementPositions={elementPositions}/>
+                    setHomePageVisible = {setHomePageVisible}
+                    homePageVisible={homePageVisible}
+                    elementPositions={elementPositions}
+                    setActivePageOnHomePage={setActivePageOnHomePage}/>
             {activePage === "projects" ? <Projects setElementPositions={setElementPositions}
                                                    elementPositions={elementPositions}/> :
                 <Home setElementPositions={setElementPositions}
