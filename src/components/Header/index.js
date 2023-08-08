@@ -15,6 +15,10 @@ const Header = ({activePage, setActivePage, homePageVisible,elementPositions}) =
 
     window.addEventListener('scroll', changeTransparency)
 
+    const openProjects = () => {
+        setActivePage("projects")
+        window.scrollTo({top:0})
+    }
 
     return (
         <>
@@ -31,7 +35,7 @@ const Header = ({activePage, setActivePage, homePageVisible,elementPositions}) =
                     {homePageVisible.contact === 1 ? null :
                     <a href='#contact'  onClick={() => setActivePage("home")}><button className={transparency === 0 ? "navButton" : "navButton invertedColour"}>contact</button></a>}
                     {activePage === "projects" ? null :
-                        <button className={transparency === 0 ? "navButton" : "navButton invertedColour"} onClick={() => setActivePage("projects")}>projects</button>}
+                        <button className={transparency === 0 ? "navButton" : "navButton invertedColour"} onClick={() => openProjects()}>projects</button>}
 
                 </div>
             </div>
