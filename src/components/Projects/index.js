@@ -24,8 +24,7 @@ const Projects = ({elementPositions, setElementPositions}) => {
         }
     }, [])
 
-    return (
-        <div className="homePage projectPageGrid">
+    return (<div className="homePage projectPageGrid">
             <h1 className="projectsHeading" ref={projectsRef}>Projects</h1>
             <div className="projects">
                 <div className="projectCard">
@@ -135,8 +134,7 @@ const Projects = ({elementPositions, setElementPositions}) => {
                     </div>
                 </div>
             </div>
-        </div>
-    )
+        </div>)
 }
 
 export default Projects
