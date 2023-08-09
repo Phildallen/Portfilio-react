@@ -24,7 +24,7 @@ const Home = ({elementPositions, setElementPositions}) => {
         return () => {
             window.removeEventListener("resize", getPosition)
         }
-    }, [])
+    }, )
 
 
     return (<>
@@ -71,7 +71,7 @@ const Home = ({elementPositions, setElementPositions}) => {
                             <a
                                 href="https://io-academy.uk/courses/full-stack-track/"
                                 target="_blank"
-                                rel="noopener"
+                                rel="noopener noreferrer"
                             >
                                 <p className="linkIcon">
                                     <FontAwesomeIcon icon="link"/>
